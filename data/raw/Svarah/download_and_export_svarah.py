@@ -1,4 +1,3 @@
-# download_and_export_svarah.py
 import os
 from pathlib import Path
 import io
@@ -8,10 +7,10 @@ from tqdm import tqdm
 from datasets import load_dataset, Audio
 
 # ---- SETTINGS ----
-HF_REPO = "ai4bharat/Svarah"
-SPLIT   = "test"  # change to "train" / "validation" if needed
+DATA_DIR = Path("data/raw/Svarah/data")  # path to the folder with parquet files
+SPLIT = "train"  # change to "train" / "validation" if needed
 OUT_DIR = Path("out_wavs")  # output folder
-TARGET_SR = 16000           # set to None to keep original SR; set to 16000 to resample
+TARGET_SR = 16000  # set to None to keep original SR; set to 16000 to resample
 
 # Columns in your schema
 AUDIO_COL = "audio_filepath"  # feature type: 'audio'
@@ -24,16 +23,14 @@ META_COLS = [
 
 def ensure_mono(x: np.ndarray) -> np.ndarray:
     """Make audio mono by averaging channels if needed."""
+    print(f"Before Mono: Channels={x.ndim}")
     x = np.asarray(x)
-    if x.ndim == 2:
-        # (n_samples, n_channels) OR (n_channels, n_samples)
-        # soundfile returns (n_samples, n_channels) typically
-        if x.shape[0] < x.shape[1]:
-            # assume (channels, samples)
+    if x.ndim == 2:  # if stereo
+        if x.shape[0] < x.shape[1]:  # (channels, samples)
             x = x.mean(axis=0)
-        else:
-            # assume (samples, channels)
+        else:  # (samples, channels)
             x = x.mean(axis=1)
+    print(f"After Mono: Channels={x.ndim}")
     return x.astype(np.float32, copy=False)
 
 def csv_escape(val):
@@ -43,19 +40,28 @@ def csv_escape(val):
     return '"' + s.replace('"', '""') + '"'
 
 def maybe_resample(wav: np.ndarray, sr: int, target_sr: int | None):
+    print(f"Before Resample: SR={sr}, Channels={wav.ndim if wav.ndim > 1 else 1}")
     if target_sr is None or sr == target_sr:
         return wav, sr
     # high-quality resample with librosa
     import librosa
     wav = librosa.resample(wav.astype(np.float32, copy=False), orig_sr=sr, target_sr=target_sr)
+    print(f"After Resample: SR={target_sr}, Channels={wav.ndim if wav.ndim > 1 else 1}")
     return wav.astype(np.float32, copy=False), target_sr
 
 def main():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # 1) Load from Hugging Face Hub
-    # We don't cast to Audio() (which can trigger torchcodec) — we’ll decode manually.
-    ds = load_dataset(HF_REPO, split=SPLIT)
+    # 1) Load from Hugging Face Hub, but from local Parquet files instead of online
+    # List all .parquet files in the folder
+    parquet_files = list(DATA_DIR.glob("*.parquet"))
+    
+    if not parquet_files:
+        raise FileNotFoundError(f"No Parquet files found in {DATA_DIR}. Please check the directory.")
+    
+    # Load the dataset from the parquet files
+    ds = load_dataset("parquet", data_files=str(DATA_DIR / "*.parquet"), split=SPLIT)
+    
     if AUDIO_COL not in ds.column_names:
         raise ValueError(f"'{AUDIO_COL}' not in dataset columns: {ds.column_names}")
 

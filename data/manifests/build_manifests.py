@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 
 # INPUT: the CSV we created earlier OR build directly from your dataset iterator.
 # Here we’ll read the CSV the export script wrote: out_wavs/manifest.csv
-IN_CSV = Path("data\manifests\manifest.csv")
+IN_CSV = Path(r"data\manifests\manifest.csv")
 OUT_DIR = Path("manifests")
 OUT_DIR.mkdir(exist_ok=True, parents=True)
 
