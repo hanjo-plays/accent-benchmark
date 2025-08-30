@@ -3,7 +3,7 @@
 data\raw\Svarah\data_exploration.ipynb
 # Data and audio (keep manifests but ignore raw/wavs)
 data/raw/
-#out_wavs/
+out_wavs_johan/
 *.wav
 *.mp3
 *.flac
