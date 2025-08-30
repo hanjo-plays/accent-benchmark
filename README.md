@@ -5,11 +5,15 @@ It uses the Svarah dataset and computes metrics such as Word Error Rate (WER) an
 
 ## Structure
 
-data/raw/         → original parquet files
-data/out_wavs/    → exported 16kHz mono wavs + manifest.csv
-data/manifests/   → train/dev/test jsonl manifests
-eval/             → results and metrics
-scripts/          → data prep + evaluation scripts
+data/raw/         → original parquet files    
+
+data/out_wavs/    → exported 16kHz mono wavs + manifest.csv  
+
+data/manifests/   → train/dev/test jsonl manifests  
+
+eval/             → results and metrics  
+
+scripts/          → data prep + evaluation scripts  
 
 ## Pipeline
 
