@@ -1,0 +1,18 @@
+# Data and audio (keep manifests but ignore raw/wavs)
+data/raw/
+data/out_wavs/
+*.wav
+*.mp3
+*.flac
+*.parquet
+
+# Model weights / cache
+eval/results/
+eval/logs/
+checkpoints/
+*.pt
+*.bin
+*.ckpt
+
+# Hugging Face cache
+~/.cache/huggingface/
