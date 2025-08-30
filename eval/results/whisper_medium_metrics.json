@@ -1,0 +1,8 @@
+{
+  "model": "medium",
+  "language": "en",
+  "device": "cuda",
+  "n_items": 978,
+  "wer": 0.07822511236492302,
+  "cer": 0.03629378065932558
+}

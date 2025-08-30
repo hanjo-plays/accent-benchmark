@@ -1,3 +1,6 @@
+
+\data\raw\Svarah\download_and_export_svarah_test.py
+data\raw\Svarah\data_exploration.ipynb
 # Data and audio (keep manifests but ignore raw/wavs)
 data/raw/
 data/out_wavs/
@@ -7,7 +10,6 @@ data/out_wavs/
 *.parquet
 
 # Model weights / cache
-eval/results/
 eval/logs/
 checkpoints/
 *.pt
