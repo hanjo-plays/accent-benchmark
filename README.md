@@ -34,5 +34,5 @@ Compute WER and CER using jiwer
 Save outputs to eval/results/
 
 ## Example Result (Whisper Medium, Svarah test split)
-WER = 7.8%
+WER = 7.8% (Whisper library version: 20250625 (06.2025))  vs WER = 8.3% (Svarah paper (2023) https://github.com/AI4Bharat/Svarah?tab=readme-ov-file#table-1-wer-comparison)
 CER = 3.6%
