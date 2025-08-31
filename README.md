@@ -4,7 +4,7 @@
 
 This project evaluates state-of-the-art ASR models, such as **OpenAI Whisper**, on the **Svarah dataset**, computing performance metrics like **Word Error Rate (WER)** and **Character Error Rate (CER)**.
 
----
+
 
 ##  Project Structure
 
@@ -13,10 +13,10 @@ This project evaluates state-of-the-art ASR models, such as **OpenAI Whisper**, 
 | `data/raw/`             | Original Parquet files containing audio data |
 | `data/out_wavs/`        | Exported 16kHz mono WAV files and `manifest.csv` |
 | `data/manifests/`       | Train/dev/test JSONL manifests |
-| `eval/`                 | Evaluation results, WER/CER metrics |
-| `scripts/`              | Data preparation and evaluation scripts |
+| `eval/results`          | Evaluation results, WER/CER metrics |
+| `eval/scripts/`         | Data preparation and evaluation scripts |
 
----
+
 
 ##  Pipeline Overview
 
@@ -30,14 +30,14 @@ This project evaluates state-of-the-art ASR models, such as **OpenAI Whisper**, 
 - Compute **WER** and **CER** using **`jiwer`**.
 - Save outputs to **`eval/results/`** for analysis.
 
----
+
 
 ##  Key Features
 - Handles **audio preprocessing** (resampling, mono conversion) for ASR pipelines.
 - Supports **benchmarking multiple models** in a consistent manner.
 - Produces **quantitative performance metrics** for comparison.
 
----
+
 
 ## Initial Result (Whisper Medium, Svarah test split)
 
@@ -51,3 +51,25 @@ This project evaluates state-of-the-art ASR models, such as **OpenAI Whisper**, 
 - This indicates that a resource intensive model like Whisper Medium has not had a significant improvement over the last 2 years in terms of WER on Indian English speech.
 - This suggests that further research and development is needed to achieve substantial gains in ASR performance for Indian English.
 
+---
+
+## Student Notes / Reflection
+
+- **Project Type**: Personal project 
+- **Objective**: Benchmark state-of-the-art ASR models on open-source datasets to understand performance on accented English.  
+
+### Key Learnings:
+- Gained practical experience in **data preprocessing for audio** (resampling, mono conversion, handling parquet datasets).  
+- Learned to work with **pre-trained ML models** (Whisper) and evaluate their performance using **WER and CER** metrics.  
+- Understood challenges in **ASR for non-native or accented speech**, including **stagnation in model performance** over multiple years.  
+
+### Challenges Overcome:
+- Managing **large audio datasets** efficiently.  
+- Converting **heterogeneous audio formats** into a uniform pipeline-ready format.  
+- Integrating multiple **ML libraries and frameworks** (Hugging Face, PyTorch, librosa, soundfile).  
+
+### Skills Developed:
+- **Programming**: Python (NumPy, Pandas, PyTorch), scripting, file handling.  
+- **Machine Learning**: Model evaluation, benchmarking, metric computation.  
+- **Data Engineering**: Handling Parquet files, creating manifests, splitting datasets for train/dev/test.  
+- **Analytical Thinking**: Interpreting model performance trends, comparing with literature (Svarah paper).  
