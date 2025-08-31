@@ -1,37 +1,43 @@
 # Accent Benchmark
 
-This project benchmarks Automatic Speech Recognition (ASR) models on Indian English speech.  
-It uses the Svarah dataset and computes metrics such as Word Error Rate (WER) and Character Error Rate (CER) for models like OpenAI Whisper.
+**Benchmarking Automatic Speech Recognition (ASR) Models on Indian English Speech**
 
-## Structure
+This project evaluates state-of-the-art ASR models, such as **OpenAI Whisper**, on the **Svarah dataset**, computing performance metrics like **Word Error Rate (WER)** and **Character Error Rate (CER)**.
 
-data/raw/         → original parquet files    
+---
 
-data/out_wavs/    → exported 16kHz mono wavs + manifest.csv  
+##  Project Structure
 
-data/manifests/   → train/dev/test jsonl manifests  
+| Folder                  | Description |
+|-------------------------|-------------|
+| `data/raw/`             | Original Parquet files containing audio data |
+| `data/out_wavs/`        | Exported 16kHz mono WAV files and `manifest.csv` |
+| `data/manifests/`       | Train/dev/test JSONL manifests |
+| `eval/`                 | Evaluation results, WER/CER metrics |
+| `scripts/`              | Data preparation and evaluation scripts |
 
-eval/             → results and metrics  
+---
 
-scripts/          → data prep + evaluation scripts  
+##  Pipeline Overview
 
-## Pipeline
+### 1 Data Preparation
+- Convert audio to **16kHz mono WAV** format for consistency.
+- Export metadata to **`manifest.csv`**.
+- Build **train/dev/test JSONL splits** for model evaluation.
 
-### Data preparation
+### 2️ Model Evaluation
+- Run currently **Whisper models** (medium/) on test data.
+- Compute **WER** and **CER** using **`jiwer`**.
+- Save outputs to **`eval/results/`** for analysis.
 
-Convert audio to 16kHz mono wav
+---
 
-Export metadata to manifest.csv
+##  Key Features
+- Handles **audio preprocessing** (resampling, mono conversion) for ASR pipelines.
+- Supports **benchmarking multiple models** in a consistent manner.
+- Produces **quantitative performance metrics** for comparison.
 
-Build train/dev/test jsonl splits
-
-### Evaluation
-
-Run Whisper (small/medium/large-v2)
-
-Compute WER and CER using jiwer
-
-Save outputs to eval/results/
+---
 
 ## Initial Result (Whisper Medium, Svarah test split)
 
