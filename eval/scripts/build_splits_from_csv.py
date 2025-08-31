@@ -186,7 +186,7 @@ def main():
     ndv, _ = counts(dev_items)
     nts, _ = counts(test_items)
 
-    print(f"✅ Wrote splits to {OUT_DIR}")
+    print(f"Wrote splits to {OUT_DIR}")
     print(f"  train: {ntr}  | dev: {ndv} | test: {nts}")
 
 if __name__ == "__main__":
