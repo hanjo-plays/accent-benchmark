@@ -1,5 +1,4 @@
 # Test files to ignore
-eval/scripts/build_splits_from_csv_test.py
 # Notebooks to ignore
 
 # Data and audio (keep manifests but ignore raw/wavs)
