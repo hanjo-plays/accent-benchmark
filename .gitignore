@@ -1,7 +1,7 @@
 # Test files to ignore
-data/raw/Svarah/download_and_export_svarah_test.py
+
 # Notebooks to ignore
-data/raw/Svarah/data_exploration.ipynb
+
 # Data and audio (keep manifests but ignore raw/wavs)
 data/
 out_wavs_johan/

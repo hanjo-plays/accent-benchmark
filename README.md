@@ -20,12 +20,12 @@ This project evaluates state-of-the-art ASR models, such as **OpenAI Whisper**, 
 
 ##  Pipeline Overview
 
-### 1 Data Preparation
+### 1. Data Preparation
 - Convert audio to **16kHz mono WAV** format for consistency.
 - Export metadata to **`manifest.csv`**.
 - Build **train/dev/test JSONL splits** for model evaluation.
 
-### 2️ Model Evaluation
+### 2️. Model Evaluation
 - Run currently **Whisper models** (medium/) on test data.
 - Compute **WER** and **CER** using **`jiwer`**.
 - Save outputs to **`eval/results/`** for analysis.
@@ -81,5 +81,5 @@ This project evaluates state-of-the-art ASR models, such as **OpenAI Whisper**, 
 This project uses the **Svarah dataset** (AI4Bharat, 2023) for benchmarking ASR models.  
 I thank the authors for making the dataset publicly available and providing detailed evaluation metrics.
 
-- **Dataset Repository**: [https://huggingface.co/datasets/ai4bharat/Svarah](https://huggingface.co/datasets/ai4bharat/Svarah)[https://github.com/AI4Bharat/Svarah](https://github.com/AI4Bharat/Svarah)  
+- **Dataset Repository**: [https://huggingface.co/datasets/ai4bharat/Svarah](https://huggingface.co/datasets/ai4bharat/Svarah)  [https://github.com/AI4Bharat/Svarah](https://github.com/AI4Bharat/Svarah)  
 - **Paper / Reference**: Javed et al., *Interspeech 2023*, [Link to Paper](https://www.isca-speech.org/archive/Interspeech_2023/abstracts/xxx.html)
