@@ -1,5 +1,5 @@
 # Test files to ignore
-
+eval/scripts/test_*.py
 # Notebooks to ignore
 
 # Data and audio (keep manifests but ignore raw/wavs)
