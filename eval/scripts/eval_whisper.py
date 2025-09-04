@@ -1,4 +1,3 @@
-# eval_whisper.py
 import os, json, argparse
 from pathlib import Path
 
